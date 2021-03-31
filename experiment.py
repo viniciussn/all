@@ -495,7 +495,7 @@ def exitfn():
 def switch_to_linux():
     assert is_server()
     print "switch to linux"
-    runcmd("sudo ifdown {} || true".format(NIC_IFNAME))
+    runcmd("sudo ifconfig {} down || true".format(NIC_IFNAME))
     runcmd("sudo {}/scripts/setup_machine.sh || true".format(SDIR))
     runcmd("sudo {}/dpdk/usertools/dpdk-devbind.py -b none {}".format(SDIR, NIC_PCI))
     runcmd("sudo modprobe ixgbe")
@@ -512,7 +512,7 @@ def switch_to_shenango():
     runcmd("sudo {}/scripts/setup_machine.sh || true".format(SDIR))
     if not is_server():
         return
-    runcmd("sudo ifdown {}".format(NIC_IFNAME))
+    runcmd("sudo ifconfig {} down".format(NIC_IFNAME))
     runcmd("sudo modprobe uio")
     runcmd("(lsmod | grep -q igb_uio) || sudo insmod {}/dpdk/build/kmod/igb_uio.ko".format(SDIR))
     runcmd("sudo {}/dpdk/usertools/dpdk-devbind.py -b igb_uio {}".format(SDIR, NIC_PCI))
