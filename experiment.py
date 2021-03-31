@@ -20,7 +20,7 @@ RSTAT = "{}/scripts/rstat.go".format(SDIR)
 
 THISHOST = subprocess.check_output("hostname -s", shell=True).strip()
 
-CORES_RESTRICT = Flase # Restrict cores on node-0/node-1
+CORES_RESTRICT = False # Restrict cores on node-0/node-1
 
 binaries = {
     'iokerneld': {
