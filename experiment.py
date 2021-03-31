@@ -20,7 +20,7 @@ RSTAT = "{}/scripts/rstat.go".format(SDIR)
 
 THISHOST = subprocess.check_output("hostname -s", shell=True).strip()
 
-CORES_RESTRICT = True # Restrict cores on zig/zag
+CORES_RESTRICT = True # Restrict cores on node-0/node-1
 
 binaries = {
     'iokerneld': {
@@ -72,26 +72,26 @@ NETMASK = "255.255.255.0"
 GATEWAY = IP(1)
 
 LNX_IPS = {
-    'zig': IP(3),
-    'zag': IP(2),
+    'node-0': IP(3),
+    'node-1': IP(2),
 }
 
 OOB_IPS = {
     'pd%d' % d: '18.26.5.%d' % d for d in range(1, 12)
 }
 OOB_IPS.update({
-    'zig':  '18.26.4.39',
-    'zag': '18.26.4.41',
+    'node-0':  '18.26.4.39',
+    'node-1': '18.26.4.41',
 })
 
 SERVER_MACS = {
-    'zig': '14:58:d0:58:2f:53',
-    'zag': '14:58:d0:58:df:13',
+    'node-0': '14:58:d0:58:2f:53',
+    'node-1': '14:58:d0:58:df:13',
 }
 
-OBSERVER = "zig"
+OBSERVER = "node-0"
 OBSERVER_IP = IP(3)
-OBSERVER_MAC = SERVER_MACS['zig']
+OBSERVER_MAC = SERVER_MACS['node-0']
 CLIENT_SET = ["pd3", "pd4"]
 CLIENT_MACHINE_NCORES = 6
 NEXT_CLIENT_ASSIGN = 0
@@ -632,7 +632,7 @@ def gen_ix_conf(filename, experiment, **kwargs):
     ]
 
     # ZIG/ZAG SPECIFIC! #
-    assert THISHOST in ["zig", "zag"]
+    assert THISHOST in ["node-0", "node-1"]
 
     if 'noht' in experiment:
         cpu_list = list(range(0,24,2))
@@ -677,7 +677,7 @@ def launch_shenango_program(cfg, experiment):
     print "Running", fullcmd
 
     ### HACK
-    # if THISHOST.startswith("pd") or THISHOST == "zag":
+    # if THISHOST.startswith("pd") or THISHOST == "node-1":
     #     fullcmd = "export RUST_BACKTRACE=1; " + fullcmd
 
     proc = subprocess.Popen(fullcmd, shell=True, cwd=experiment['name'])
