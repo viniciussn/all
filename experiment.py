@@ -20,7 +20,7 @@ RSTAT = "{}/scripts/rstat.go".format(SDIR)
 
 THISHOST = subprocess.check_output("hostname -s", shell=True).strip()
 
-CORES_RESTRICT = True # Restrict cores on node-0/node-1
+CORES_RESTRICT = Flase # Restrict cores on node-0/node-1
 
 binaries = {
     'iokerneld': {
@@ -59,7 +59,7 @@ binaries = {
 if CORES_RESTRICT:
     USABLE_CPUS = range(0, 16, 2) + range(24, 40, 2)
 else:
-    USABLE_CPUS = range(0, 48, 2)
+    USABLE_CPUS = range(0, 16, 2)
 
 USABLE_CPUS_STR = ",".join([str(x) for x in USABLE_CPUS])
 
