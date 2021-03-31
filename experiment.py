@@ -67,13 +67,13 @@ def IP(node):
     assert node > 0 and node < 255
     return "{}.{}".format(NETPFX, node)
 
-NETPFX = "192.168.18"
+NETPFX = "192.168.1"
 NETMASK = "255.255.255.0"
 GATEWAY = IP(1)
 
 LNX_IPS = {
-    'zig': IP(9),
-    'zag': IP(8),
+    'zig': IP(3),
+    'zag': IP(2),
 }
 
 OOB_IPS = {
@@ -85,18 +85,18 @@ OOB_IPS.update({
 })
 
 SERVER_MACS = {
-    'zig': '00:1b:21:bc:66:44',
-    'zag': '00:1b:21:bc:66:3a',
+    'zig': '14:58:d0:58:2f:53',
+    'zag': '14:58:d0:58:df:13',
 }
 
 OBSERVER = "zig"
-OBSERVER_IP = IP(9)
+OBSERVER_IP = IP(3)
 OBSERVER_MAC = SERVER_MACS['zig']
 CLIENT_SET = ["pd3", "pd4"]
 CLIENT_MACHINE_NCORES = 6
 NEXT_CLIENT_ASSIGN = 0
-NIC_PCI = "0000:04:00.0"
-NIC_IFNAME = "enp4s0f0"
+NIC_PCI = "0000:09:00.0"
+NIC_IFNAME = "eno1d1"
 
 def is_server():
     return THISHOST in SERVER_MACS.keys()
@@ -1067,7 +1067,7 @@ def paper_experiments():
             assemble_local_synth(0.8, 1, 10, time=10, samples=40))
 
     # balancer interval experiment
-    if False:
+    if True:
         for interval in [25, 50, 100]:
             run_balancer_experiment(interval)
 
