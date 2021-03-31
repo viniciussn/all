@@ -1057,7 +1057,7 @@ def run_cycle_counting_experiment():
 
 def paper_experiments():
     # load shift experiment
-    if False:
+    if True:
         execute_experiment(loadshift("shenango"))
         execute_experiment(loadshift("arachne"))
 
@@ -1067,7 +1067,7 @@ def paper_experiments():
             assemble_local_synth(0.8, 1, 10, time=10, samples=40))
 
     # balancer interval experiment
-    if True:
+    if False:
         for interval in [25, 50, 100]:
             run_balancer_experiment(interval)
 
