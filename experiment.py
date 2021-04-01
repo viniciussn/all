@@ -89,8 +89,8 @@ SERVER_MACS = {
     'node-1': '14:58:d0:58:df:13',
 }
 
-OBSERVER = "node-0"
-OBSERVER_IP = IP(3)
+OBSERVER = "node-1"
+OBSERVER_IP = IP(2)
 OBSERVER_MAC = SERVER_MACS['node-0']
 CLIENT_SET = ["pd3", "pd4"]
 CLIENT_MACHINE_NCORES = 6
